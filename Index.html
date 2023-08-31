@@ -1,0 +1,436 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ballons Be</title>
+    <link rel="shortcut icon" href="images/logo.png" type="image/png">
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+</head>
+
+
+
+<style>
+    .container{
+        padding:0;
+    }
+
+    .tab-title{
+        padding:20px;
+    }
+    .col-4.product>img{
+        width: max-content;
+        display: block;
+        margin: 0 auto 10px;
+        max-width:inherit;
+    }
+    .col-4.product {
+        text-align:center;
+        margin-bottom: 20px;
+        display: none;
+    }
+
+    span.price-badge {
+        position: absolute;
+        bottom: 4px;
+        right: 0;
+    }
+    span.badge.rounded-pill.bg-danger.cart-sum,
+    .checkout-sum{
+        font-size: xx-small;
+    }
+    .tab-pane>h2{
+        margin: 20px auto 30px;
+    }
+    div#staticBackdrop {
+        background: #000000;
+        transition-duration: 1s;
+    }
+    div[role="tabpanel"]{
+        padding: 0 10px;
+        }
+    .cart-thumps{
+        width: 80px;
+    }
+</style>
+
+
+<body>
+    <div class="container">
+        <nav>
+            <div class="nav nav-tabs animate_animated animate_fadeInDown" id="nav-tab" role="tablist">
+                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#nav-store" type="button" role="tab">
+                    <i class="fa-solid fa-store"></i> Каталог
+                </button>
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-order" type="button" role="tab">
+                    </i> История заказов 
+                </button>
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-checkout" type="button" role="tab">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="badge rounded-pill bg-danger cart-sum">0</span>
+                </button>
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane show active" id="nav-store" role="tabpanel">
+                <h2 class="animate_animated animate_fadeInUp text-center tab-title">Каталов товаров</h2>
+                <div class="row product-list">
+                    <div class="col-12 product animate_animated animate_fadeInUp">
+                        Товары не найдены!
+                    </div>
+                    <!-- product -->
+                </div>
+              
+            </div>
+            <div class="tab-pane fade show" id="nav-order" role="tabpanel">
+                <h2 class="animate_animated animate_fadeInUp text-center tab-title">История заказов</h2>
+                <div class="row">
+                    <div class="col-12 product animate_animated animate_fadeInUp">
+                        <ol class="list-group list-group-numbered">
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                    <div class="fw-bold">NFT N: 9528</div>
+                                    Payinu succses with paaypal (04.02.2021)
+                                </div>
+                                <span class="badge bg-primary rounded-pill">90 РУБ</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                    <div class="fw-bold">NFT N: 9528</div>
+                                    Payinu succses with paaypal (04.02.2021)
+                                </div>
+                                <span class="badge bg-primary rounded-pill">90 РУБ</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                    <div class="fw-bold">NFT N: 9528</div>
+                                    Payinu succses with paaypal (04.02.2021)
+                                </div>
+                                <span class="badge bg-primary rounded-pill">90 РУБ</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                    <div class="fw-bold">NFT N: 9528</div>
+                                    Payinu succses with paaypal (04.02.2021)
+                                </div>
+                                <span class="badge bg-primary rounded-pill">90 РУБ</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                    <div class="fw-bold">NFT N: 9528</div>
+                                    Payinu succses with paaypal (04.02.2021)
+                                </div>
+                                <span class="badge bg-primary rounded-pill">90 РУБ</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                    <div class="fw-bold">NFT N: 9528</div>
+                                    Payinu succses with paaypal (04.02.2021)
+                                </div>
+                                <span class="badge bg-primary rounded-pill">90 РУБ</span>
+                            </li>
+                        </ol>
+                     </div>
+                    <div class="col-12">
+                        <pre id="logbox"></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade show" id="nav-checkout" role="tabpanel">
+                <h2 class="animate_animated animate_fadeInUp text-center tab-title">Корзина
+                    <span class="btn btn-danger bg-danger checkout-clear">
+                        <i class="fa-solid fa-trash-arrow-up"></i></span>
+                </h2>
+                <div class="row">
+                    <div class="col-12 product animate_animated animate_fadeInUp">
+                        <ul class="list-group cart-list">
+                            <li class="list-group-item d-flex justify-content-between align-items-start">Корзина пуста</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title <span class="badge rounded-pill bg-danger">0.00 sum.</span></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">...</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const telegram = window.Telegram.WebApp
+        const telegramData = telegram.initDataUnsafe
+        if (Object.keys(telegramData).length === 0 || typeof telegramData.user === 'undefined') {
+
+        } else {
+            telegram.expand()
+            document.querySelector("#logbox").innerText = JSON.stringify(telegram, null, 4)
+        }
+        const themeParams = telegram.themeParams
+        const mainButton = telegram.MainButton;
+        mainButton.setText('Pay ' + (totalSum * kursUSD).toFixed(2) + ' USD.');
+        
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v6.1.1/js/all.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function arrayShufle(array) {
+            return array.sort((a,b) => 0.5 - Math.random())
+        }
+        const kursUSD = 1
+        let nftBase = [{
+            "name": "Набор №61",
+            "img": "1.png",
+            "price": 3800
+        }, {
+            "name": "Набор №64",
+            "img": "2.png",
+            "price": 2150
+        },
+        {
+            "name": "Набор №12",
+            "img": "3.png",
+            "price": 1040
+        },
+        {
+            "name": "Набор №56",
+            "img": "4.png",
+            "price": 1150
+        },
+        {
+            "name": "Набор №2",
+            "img": "5.png",
+            "price": 2500
+        },
+        {
+            "name": "Набор №11",
+            "img": "6.png",
+            "price": 6350
+        },
+        {
+            "name": "Набор №54",
+            "img": "7.png",
+            "price": 2350
+        },
+        {
+            "name": "Набор №13",
+            "img": "8.png",
+            "price": 8300
+        },
+        {
+            "name": "Набор №26",
+            "img": "9.png",
+            "price": 6060
+        },
+        {
+            "name": "Набор №42",
+            "img": "10.png",
+            "price": 2700
+        }, {
+            "name": "Набор №56",
+            "img": "11.png",
+            "price": 12800
+        }, {
+            "name": "Набор №21",
+            "img": "12.png",
+            "price": 7810
+            }];
+            document.addEventListener("DOMContentLoaded", () => {
+    
+                document.addEventListener("DOMContentLoaded", () => {
+    const storeTab = document.querySelector("#nav-store");
+    const orderTab = document.querySelector("#nav-order");
+    const checkoutTab = document.querySelector("#nav-checkout");
+
+    // При клике по вкладке "Каталог"
+    storeTab.addEventListener("click", () => {
+        storeTab.classList.add("active");
+        orderTab.classList.remove("active");
+        checkoutTab.classList.remove("active");
+
+        // Показываем соответствующий раздел
+        document.querySelector(".tab-pane#nav-store").style.display = "block";
+        document.querySelector(".tab-pane#nav-order").style.display = "none";
+        document.querySelector(".tab-pane#nav-checkout").style.display = "none";
+    });
+
+    // При клике по вкладке "История заказов"
+    orderTab.addEventListener("click", () => {
+        // ...
+    });
+
+    // При клике по вкладке "Корзина"
+    checkoutTab.addEventListener("click", () => {
+        // ...
+    });
+
+    // ...
+});
+    
+    const productList = document.querySelector("div.product-list")
+    productList.innerHTML = ""
+    arrayShufle(nftBase).forEach(el => {
+        productList.innerHTML += `
+            <div class="col-4 product animate_animated animate_fadeInUpBig">
+                <img src="images/${el['img']}" alt="product">
+                <div class="position-relative">
+                    <span class="badge rounded-pill bg-danger price-badge">${el['price']} РУБ.</span>
+                </div>
+                <div class="btn-group btn-group-sm" role="group" data-product='${JSON.stringify(el)}'>
+                    <button type="button" class="btn btn-outline-info" data-rol="info" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <i class="fa-solid fa-circle-info"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-info" data-rol="save">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-info" data-rol="buy">Добавить</button>
+                </div>
+            </div>`;
+         });
+
+        const products = document.querySelectorAll(".product")
+        let i = 0
+            let printer = setInterval(() => {
+                let el = products[i]
+                i < products.length ? el.style.display = "block" : clearInterval(printer)
+                i++
+            }, 200)
+        cart()
+        const store = document.querySelectorAll(".btn-outline-info")
+        store.forEach(el => {
+                el.addEventListener("click", () => {
+                    switch (el.dataset.rol) {
+                        case "info":
+                            showInfo(JSON.parse(el.parentElement.dataset.product))
+                            break
+                        case "save":
+                            saveProduct(JSON.parse(el.parentElement.dataset.product))
+                            break
+                        case "buy":
+                            cart({
+                                'add': JSON.parse(el.parentElement.dataset.product)
+                            })
+                            break
+                        default:
+                            break
+                    }
+                })
+            })
+            document.querySelector(".checkout-clear").addEventListener("click", () => {
+                cart({
+                    'clear':true
+                })
+            })
+        })
+        function cart(params = []) {
+            let cart = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : {}
+            if (params['add']) {
+                cart[params['add']['name']] = params['add']
+                localStorage.setItem("cart", JSON.stringify(cart));
+            } else if (params['remove']) {
+                delete cart[params['remove']]
+                localStorage.setItem("cart", JSON.stringify(cart));
+            } else if (params['clear']) {
+                cart = {};
+                localStorage.setItem("cart", "{}");
+            }
+            let totalSum = 0
+            const cartList = document.querySelector(".cart-list")
+            Object.values(cart).forEach((product, index) => {
+                if (index == 0) cartList.innerHTML = ""
+                totalSum += product.price;
+                cartList.innerHTML += `
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2">
+                                <img src="images/${product.img}" alt="text" class="cart=thumps">
+                            </div>
+                            <div class = "ms-2 me-auto">
+                                <div class="fw-bold">NFT N: ${product.name}</div>
+                                <span class = "small">${product.price} РУБ </span>
+                            </div>
+                            <span class="badge bg-danger rounded-pill" onclick="cart({"remove": '${product.name}'})">
+                                <i class = "fa-regular fa-trash-can"></i>
+                            </span>
+                        </li>`           
+                })
+            document.querySelector(".cart-sum").innerText = `${totalSum.toFixed(2)} РУБ`
+            if (Object.keys(cart).length < 1) {
+                cartList.innerHTML =
+                    `<li class = "list-group-item d-flex justify-content-between align-items-start">Корзина пустая</li>`
+                mainButton.hide();
+            } else {
+                mainButton.show();
+                mainButton.setParams({
+                    'text': 'pay ' + (totalSum * kursUSD).toFixed(2) + ' USD.',
+                    'color': "#2ECC71",
+                    'text_color': "#F7F9F9"
+                })
+            }
+            return cart
+        }
+        const showInfo = (product) => {
+            document.querySelector("#exampleModalLabel").innerHTML =
+                `NFT: ${product.name} <span class="badge rounded-pill bg-danger">${product.price} РУБ.</span>`
+        }
+        const saveProduct = (product) => {
+            console.log("Save in list of favorites !");
+        }
+
+        mainButton.onClick(() => {
+    let orderList = [];
+    Object.values(cart()).forEach(product => {
+        orderList.push({
+            'label': product.name,
+            'amount': (product.price * kursUSD * 100).toFixed(0)
+        });
+    });
+
+    console.log(orderList);
+    document.querySelector("#logbox").textContent = JSON.stringify(orderList, null, 4);
+    
+    const BotToken = '5802900431:AAGEk-4mI9SizOIAkZJMW-MLVG1aicpPH_c';
+    let method = "sendInvoice";
+    axios.post(`https://api.telegram.org/bot${BotToken}/${method}`, {
+        'chat_id':telegramData.user.id ,
+        'title': "NFT MARKET BILLING SYSTEM",
+        'description': 'Этот заказ покупки товраа',
+        'payload': "order_id=G3645",
+        'provider_token': '',
+        'currency': 'USD',
+        'max_tip_amount': 1000*100,
+        'prices': orderList,
+        'suggested_tip_amounts':[
+            1*100, 5*100, 50*100, 100*100,
+        ],
+        'need_name': true,
+        'need_phone_number': true,
+        'need_email': true,
+        'need_shipping_address': true,
+
+    })
+    .then(function (response) {
+        if (response.data.result) telegram.close();
+    })
+    .catch(function (error) {
+        document.querySelector("#logbox").innerText = JSON.stringify(error, null, 4)
+        console.log(error);
+    });
+});
+    </script>
+</body>
+</html>
